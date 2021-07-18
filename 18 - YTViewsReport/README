@@ -1,0 +1,4 @@
+Goal of the challenge:
+1. Create a robot that will scrape number of views at videos in any publick playlist(example: https://www.youtube.com/channel/UC9G5RiiDSaku7kY-38SN1kg)
+2. Add summary of views counts of all videos from the playlist for each day.
+3. Store the results in Excel.
