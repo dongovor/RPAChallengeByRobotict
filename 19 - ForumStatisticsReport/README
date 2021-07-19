@@ -1,0 +1,5 @@
+Goal:
+1. Take list of topic from https://community.robotict.com/latest
+2. Extract details(Name, Number of Replies, Number of Views, Last Activity)
+3. Convert Last Activity to yyyy-MM-dd
+4. Save to Excel/CSV
