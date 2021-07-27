@@ -1,0 +1,4 @@
+Goal of the Challenge:
+1. Create a robot that would take folder path as input (prompt or argument).
+2. Sort files in that folder by creation date,
+3. create sub-directories for each date and categorize the files inside them.
