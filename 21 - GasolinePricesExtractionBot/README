@@ -1,0 +1,6 @@
+Goal of the challenge:
+1. Scrape Countries and Gasoline prices from this website: Gasoline prices around the world, 26-Jul-2021 | GlobalPetrolPrices.com
+2. This will be a nice example of power of RPA since there is a way how to download the data in structured format, even this website offers some API, but both is in paid section. Using RPA we can get the data in structured format!
+3. Take gasoline consumption (liters per 100km) as input argument;
+4. For each country - count how far you can get when you spend 100€ for gasoline;
+5. Result to be an Excel table with columns: Country | Price EUR/l | Distance
