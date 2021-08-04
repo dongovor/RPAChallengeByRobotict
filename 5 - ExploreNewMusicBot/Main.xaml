@@ -1,0 +1,303 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.in_URL="https://freemusicarchive.org/home" this:Main.in_IntTimeOut="3000" this:Main.in_FilesToDownload="10" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_URL" Type="InArgument(x:String)" />
+    <x:Property Name="in_IntTimeOut" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_FilesToDownload" Type="InArgument(x:Int32)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>789,1719</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="68">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="60">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="0. Check Arguments;&#xD;&#xA;1. Nav by in_URL;&#xA;2. Select main genre from &quot;Genres&quot;/pick random;&#xA;3. Pick 10-40 songs and download them." DisplayName="Main ExploreNewMusic bot" sap:VirtualizedContainerService.HintSize="547,1554" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:Browser" Default="[new Browser]" Name="browser" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try Catch Recreate/Create DownloadedMusic fldr" sap:VirtualizedContainerService.HintSize="505,51" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <If Condition="[Directory.Exists(&quot;DownloadedMusic&quot;)]" DisplayName="If &lt;bot_folder&gt;\DownloadedMusic.Exists-&gt;recreate, else create" sap:VirtualizedContainerService.HintSize="755,448" sap2010:WorkflowViewState.IdRef="If_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="recreate DownloadedMusic" sap:VirtualizedContainerService.HintSize="376,290" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete DownloadedMusic" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="Delete_1" Path="DownloadedMusic" />
+              <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder DownloadedMusic" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="DownloadedMusic" />
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder DownloadedMusic" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="DownloadedMusic" />
+          </If.Else>
+        </If>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="759,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Throw DisplayName="Throw folder creation problem" Exception="[New System.Exception(String.Format(&quot;The bot was unable to create DowloadedMusic folder. Exception:&quot;, Exception.Message))]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_2" />
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+    <TryCatch DisplayName="Try Catch global" sap:VirtualizedContainerService.HintSize="505,1299" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <ui:OpenBrowser CommunicationMethod="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser in_URL" Hidden="True" sap:VirtualizedContainerService.HintSize="467,1072" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" UiBrowser="[browser]" Url="[in_URL]">
+          <ui:OpenBrowser.Body>
+            <ActivityAction x:TypeArguments="x:Object">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="download" sap:VirtualizedContainerService.HintSize="376,971" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="uiEls" />
+                  <Variable x:TypeArguments="x:Boolean" Name="isNxtBtn" />
+                  <Variable x:TypeArguments="x:String" Name="strNumberOfSongs" />
+                  <Variable x:TypeArguments="x:String" Name="strGenre" />
+                  <Variable x:TypeArguments="sd:DataTable" Name="dt_AllSongs" />
+                  <Variable x:TypeArguments="scg:List(x:String)" Name="list_SongsToDownload">
+                    <Variable.Default>
+                      <mva:VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="new List(of String)" />
+                    </Variable.Default>
+                  </Variable>
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:MinimizeWindow Window="{x:Null}" DisplayName="Minimize Window (fake hide)" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="MinimizeWindow_1" />
+                <ui:FindChildren Children="[uiEls]" DisplayName="Find Children get genres links" Filter="&lt;webctrl tag='A' /&gt;" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="FindChildren_1" Scope="FIND_DESCENDANTS">
+                  <ui:FindChildren.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b5da1752-c846-4250-af9a-0fc77cc90341" Selector="&lt;webctrl parentid='fma-menu' tag='DIV' class='menu-links' parentclass='menu-link menu-link-bygenre' /&gt;" TimeoutMS="[in_IntTimeOut]" WaitForReady="INTERACTIVE" />
+                  </ui:FindChildren.Target>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:FindChildren>
+                <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog pick genre" sap:VirtualizedContainerService.HintSize="334,291" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Please choose genre OR click Ok and let it be random." OptionsString="[String.Join(&quot;;&quot;, uiEls.Select(Function(uiEl) uiEl.Get(&quot;aaname&quot;).ToString))]" Title="Choose genre">
+                  <ui:InputDialog.Result>
+                    <OutArgument x:TypeArguments="x:String">[strGenre]</OutArgument>
+                  </ui:InputDialog.Result>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InputDialog>
+                <If Condition="[string.IsNullOrEmpty(strGenre)]" DisplayName="If no input-&gt;rnd genre" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="If_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To random genre" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[String.Format(&quot;{0}/?pageSize=200&quot;, uiEls(new Random().Next(0, uiEls.Count)).Get(&quot;href&quot;).ToString)]" />
+                  </If.Then>
+                  <If.Else>
+                    <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To user genre" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="NavigateTo_2" Url="[String.Format(&quot;{0}/{1}/?pageSize=200&quot;, in_URL, strGenre).Replace(&quot;home&quot;, &quot;genre&quot;)]" />
+                  </If.Else>
+                </If>
+                <ui:ExtractData DelayBetweenPagesMS="{x:Null}" ContinueOnError="True" DataTable="[dt_AllSongs]" DisplayName="Extract all songs jsons" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='TrackInfo' attr='data-track-info'&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="0" NextLinkSelector="&lt;webctrl aaname='NEXT »' parentid='content' tag='A' /&gt;" SimulateClick="True">
+                  <ui:ExtractData.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ad512331-86da-4131-9776-94add119a1df" InformativeScreenshot="f4bed666d7818686ad95ea369586da98" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='content' tag='DIV' /&gt;" TimeoutMS="[in_IntTimeOut]" WaitForReady="COMPLETE" />
+                  </ui:ExtractData.Target>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ExtractData>
+                <Assign DisplayName="Assign get in_TracksToDownload rnd" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="scg:List(x:String)">[list_SongsToDownload]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="scg:List(x:String)">[(From r in (dt_AllSongs.AsEnumerable().OrderBy(Function(rnd) new Random().Next(0, dt_AllSongs.Rows.Count)).Take(in_FilesToDownload)) Select Convert.ToString(r("TrackInfo"))).ToList]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each rnd song in list of songs" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[(From r in (dt_AllSongs.AsEnumerable().OrderBy(Function(rnd) new Random().Next(0, dt_AllSongs.Rows.Count)).Take(in_FilesToDownload)) Select Convert.ToString(r(&quot;TrackInfo&quot;))).ToList]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="x:String">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:String" Name="rndSong" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="deserialize json+download file" sap:VirtualizedContainerService.HintSize="376,213" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="njl:JObject" Name="jsonObj" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[jsonObj]" JsonString="[rndSong]" />
+                        <ui:HttpClient Body="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" BodyFormat="application/xml" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request download song" EndPoint="[jsonObj(&quot;downloadUrl&quot;).ToString.Replace(&quot;\&quot;, &quot;&quot;)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" ResourcePath="[String.Format(&quot;DownloadedMusic\{0} - {1}.mp3&quot;, jsonObj(&quot;artistName&quot;).ToString, System.Text.RegularExpressions.Regex.Replace(jsonObj(&quot;title&quot;).ToString, &quot;[^a-z A-Z 0-9]&quot;, &quot;&quot;))]" TimeoutMS="[in_IntTimeOut * 20]">
+                          <ui:HttpClient.Attachments>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                          </ui:HttpClient.Attachments>
+                          <ui:HttpClient.Cookies>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                          </ui:HttpClient.Cookies>
+                          <ui:HttpClient.Headers>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                          </ui:HttpClient.Headers>
+                          <ui:HttpClient.Parameters>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                          </ui:HttpClient.Parameters>
+                          <ui:HttpClient.UrlSegments>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                          </ui:HttpClient.UrlSegments>
+                        </ui:HttpClient>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ForEach>
+                <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab after successfull download" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CloseTab_2" />
+              </Sequence>
+            </ActivityAction>
+          </ui:OpenBrowser.Body>
+        </ui:OpenBrowser>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="471,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Write global log+closa tab" sap:VirtualizedContainerService.HintSize="376,245" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message global log" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Fatal" Message="[String.Format(&quot;Wow! Something went wrong. Exception: {0}&quot;, exception.Message)]" />
+              <ui:CloseTab Browser="[browser]" DisplayName="Close Tab global catch" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CloseTab_1" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>
