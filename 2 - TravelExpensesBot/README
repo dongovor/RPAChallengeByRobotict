@@ -1,0 +1,3 @@
+Goal(s):
+1. Go through the travel expenses lists (TELs.zip) and extract the expenses.
+2. Sum the expenses and for each employee outputs his/hers name, id and sum of expenses to output file.
