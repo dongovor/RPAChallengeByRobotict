@@ -1,0 +1,7 @@
+Goal of the challenge
+1. Take some English text as input. (It can be a paragraph or two from some news article or any kind of article)
+2. go word by word and for each word longer than 4 characters perform a search on this website: https://emoji.muan.co/#
+3. 
+	3.1. if there are any results, replace that word with first (or random) emoticon from the results
+	3.2. if there are no results, skip it and leave that word in original text.
+4. Type in the result into a new post to this thread (you - human - can click the final “Reply” button)
