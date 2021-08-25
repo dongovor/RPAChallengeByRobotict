@@ -1,0 +1,7 @@
+Goal of the Challenge
+Imagine you have a company with some workers and laptops. 
+You have laptop’s serial numbers and you want to create a robot that will loop through them and check for the end date of warranty.
+
+1. Use this website: https://pcsupport.lenovo.com/ie/en to enter the Serial Numbers.
+2. For each laptop you get some information. Search and scrape end of warranty.
+3. Save the results in Excel file (two columns: SN | warranty start date | warranty end date | product link).
