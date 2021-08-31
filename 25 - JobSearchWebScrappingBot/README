@@ -1,0 +1,14 @@
+Original Goal of the challenge:
+1. Take input - search result from Linkedin (you can use this without loging in): https://www.linkedin.com/jobs/search?keywords=RPA%20Developer&location=Portugal&geoId=100364837&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0
+2. Let the bot display all results (scroll down, click “Load more jobs” untill a sign: There are no more positions)
+3. Extract for each position:
+	names of position
+	company name
+	URL to the job offer
+4. Save as Excel file
+
+My updates:
+1. Configurable search using in Arguments:
+	1.1. Country;
+	1.2. Keyword(ex. C#)
+2. No UI interaction;
