@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1405,1712" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1017,1608" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="56">
+    <scg:List x:TypeArguments="x:String" Capacity="32">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -58,7 +58,7 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="validate the file" sap:VirtualizedContainerService.HintSize="678,2272" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="validate the file" sap:VirtualizedContainerService.HintSize="476,1443" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:WorkbookApplication" Name="wb" />
     </Sequence.Variables>
@@ -67,50 +67,253 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="636,2081" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" Visible="False" Workbook="[wb]" WorkbookPath="input\InputData.xlsx">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope(input file)" sap:VirtualizedContainerService.HintSize="434,1252" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" Visible="False" Workbook="[wb]" WorkbookPath="input\InputData.xlsx">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="602,1972" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,1143" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="sd:DataTable" Name="dt_Input" />
+              <Variable x:TypeArguments="sd:DataTable" Name="dt_ErrorCodes" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[dt_Input]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="560,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Data">
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[dt_Input]" DisplayName="Read Range(data)" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Data">
               <ui:ExcelReadRange.Range>
                 <InArgument x:TypeArguments="x:String">
                   <Literal x:TypeArguments="x:String" Value="" />
                 </InArgument>
               </ui:ExcelReadRange.Range>
             </ui:ExcelReadRange>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Input]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="560,1781" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[dt_ErrorCodes]" DisplayName="Read Range(validation)" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="ErrorCodes">
+              <ui:ExcelReadRange.Range>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </ui:ExcelReadRange.Range>
+            </ui:ExcelReadRange>
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Input]" DisplayName="For Each Row in Data Table*input dt" sap:VirtualizedContainerService.HintSize="334,853" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="highlight the cell" sap:VirtualizedContainerService.HintSize="526,1662" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <Sequence DisplayName="highlight the cell" sap:VirtualizedContainerService.HintSize="242,734" sap2010:WorkflowViewState.IdRef="Sequence_4">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[not DateTime.TryParseExact(CurrentRow(&quot;Date&quot;).ToString, &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture, DateTimeStyles.None, Nothing)]" DisplayName="If date not in yyyy-MM-dd" sap:VirtualizedContainerService.HintSize="484,361" sap2010:WorkflowViewState.IdRef="If_1">
+                    <Sequence DisplayName="Rules 5, 6" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_6">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If sap2010:Annotation.AnnotationText="26.1. Wrong ErrCode" Condition="[Not (From r In dt_ErrorCodes.AsEnumerable() Select Convert.ToString(r(&quot;ErrorCode&quot;))).ToList.Contains(CurrentRow(&quot;ErrorCode&quot;).ToString)]" DisplayName="If wrong err code" sap:VirtualizedContainerService.HintSize="200,82" sap2010:WorkflowViewState.IdRef="If_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color(wrong err code)" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_7" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;ErrorCode&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:ExcelSetRangeColor>
+                        </If.Then>
+                      </If>
+                      <If sap2010:Annotation.AnnotationText="26.1. Wrong ERrName" Condition="[Not (From r In dt_ErrorCodes.AsEnumerable() Select Convert.ToString(r(&quot;ErrorName&quot;))).ToList.Contains(CurrentRow(&quot;ErrorName&quot;).ToString)]" DisplayName="If wrong err name" sap:VirtualizedContainerService.HintSize="200,82" sap2010:WorkflowViewState.IdRef="If_7">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color(wrong err code)" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_8" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;ErrorName&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:ExcelSetRangeColor>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                    <Sequence DisplayName="Rules 7, 8" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If sap2010:Annotation.AnnotationText="26.1. Reg Yes/No" Condition="[(Not CurrentRow(&quot;Registered&quot;).ToString.Trim.ToLowerInvariant.Equals(&quot;yes&quot;)) And&#xD;&#xA;(Not CurrentRow(&quot;Registered&quot;).ToString.Trim.ToLowerInvariant.Equals(&quot;no&quot;))]" DisplayName="If reg not  Yes/No" sap:VirtualizedContainerService.HintSize="484,392" sap2010:WorkflowViewState.IdRef="If_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color(reg yes/no)" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_9" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;Registered&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:ExcelSetRangeColor>
+                        </If.Then>
+                      </If>
+                      <If sap2010:Annotation.AnnotationText="26.1. Reg Yes, empty RegBy" Condition="[CurrentRow(&quot;Registered&quot;).ToString.Trim.ToLowerInvariant.Equals(&quot;yes&quot;) And &#xD;&#xA;String.IsNullOrEmpty(CurrentRow(&quot;RegisteredBy&quot;).ToString)]" DisplayName="If reg Yes-&gt;empty RegisteredBy" sap:VirtualizedContainerService.HintSize="484,82" sap2010:WorkflowViewState.IdRef="If_9">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color(reg yes&amp;empty regby" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_10" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;RegisteredBy&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:ExcelSetRangeColor>
+                        </If.Then>
+                      </If>
+                      <If sap2010:Annotation.AnnotationText="26.1. Reg No, not empty RegBy" Condition="[CurrentRow(&quot;Registered&quot;).ToString.Trim.ToLowerInvariant.Equals(&quot;no&quot;) And &#xD;&#xA;Not String.IsNullOrEmpty(CurrentRow(&quot;RegisteredBy&quot;).ToString)]" DisplayName="If reg Not-&gt; not empty RegisteredBy" sap:VirtualizedContainerService.HintSize="484,93" sap2010:WorkflowViewState.IdRef="If_11">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color(reg not&amp;not empty regby" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_12" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;RegisteredBy&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:ExcelSetRangeColor>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                    <Sequence DisplayName="Rule 9" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If sap2010:Annotation.AnnotationText="26.1. approved+empty approved by" Condition="[CurrentRow(&quot;Result&quot;).ToString.Trim.ToLowerInvariant.Equals(&quot;approved&quot;) And &#xD;&#xA;String.IsNullOrEmpty(CurrentRow(&quot;ApprovedBy&quot;).ToString)]" DisplayName="If Approved-&gt;approved by not empty" sap:VirtualizedContainerService.HintSize="484,392" sap2010:WorkflowViewState.IdRef="If_12">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color(approved&amp;filled&amp;empty)" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_13" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;ApprovedBy&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:ExcelSetRangeColor>
+                        </If.Then>
+                      </If>
+                      <If sap2010:Annotation.AnnotationText="26.1. approved+not empty reject by" Condition="[CurrentRow(&quot;Result&quot;).ToString.Trim.ToLowerInvariant.Equals(&quot;approved&quot;) And &#xD;&#xA;Not String.IsNullOrEmpty(CurrentRow(&quot;RejectedBy&quot;).ToString)]" DisplayName="If Approved-&gt;approved by not empty" sap:VirtualizedContainerService.HintSize="484,93" sap2010:WorkflowViewState.IdRef="If_15">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color(approved&amp;filled&amp;empty)" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_16" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;RejectedBy&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:ExcelSetRangeColor>
+                        </If.Then>
+                      </If>
+                      <If sap2010:Annotation.AnnotationText="26.1. rejected+empty rejectedby" Condition="[CurrentRow(&quot;Result&quot;).ToString.Trim.ToLowerInvariant.Equals(&quot;rejected&quot;) And &#xD;&#xA;String.IsNullOrEmpty(CurrentRow(&quot;RejectedBy&quot;).ToString)]" DisplayName="If rejected-&gt;rejected +rej by not empty" sap:VirtualizedContainerService.HintSize="484,392" sap2010:WorkflowViewState.IdRef="If_14">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color(approved&amp;filled&amp;empty)" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_15" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;RejectedBy&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:ExcelSetRangeColor>
+                        </If.Then>
+                      </If>
+                      <If sap2010:Annotation.AnnotationText="26.1. rejected+empty rejectedby" Condition="[CurrentRow(&quot;Result&quot;).ToString.Trim.ToLowerInvariant.Equals(&quot;rejected&quot;) And &#xD;&#xA;Not String.IsNullOrEmpty(CurrentRow(&quot;ApprovedBy&quot;).ToString)]" DisplayName="If rejected-&gt;rejected +rej by not empty" sap:VirtualizedContainerService.HintSize="484,392" sap2010:WorkflowViewState.IdRef="If_17">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color(approved&amp;filled&amp;empty)" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_18" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;ApprovedBy&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:ExcelSetRangeColor>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                    <If Condition="[not DateTime.TryParseExact(CurrentRow(&quot;Date&quot;).ToString, &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture, DateTimeStyles.None, Nothing)]" DisplayName="If date not in yyyy-MM-dd" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <If.Then>
-                        <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_1" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;Date&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                        <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color(date)" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_1" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;Date&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -120,15 +323,15 @@
                         </ui:ExcelSetRangeColor>
                       </If.Then>
                     </If>
-                    <If Condition="[String.IsNullOrEmpty(CurrentRow(&quot;UserDescription&quot;).ToString)]" DisplayName="If UserDescription is empty" sap:VirtualizedContainerService.HintSize="484,361" sap2010:WorkflowViewState.IdRef="If_3">
+                    <If Condition="[String.IsNullOrEmpty(CurrentRow(&quot;UserDescription&quot;).ToString)]" DisplayName="If UserDescription is empty" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_3">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <If.Then>
-                        <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_2" Range="[String.Format(&quot;B{0}&quot;, dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                        <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color(UserDescription)" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_2" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;UserDescription&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -138,15 +341,15 @@
                         </ui:ExcelSetRangeColor>
                       </If.Then>
                     </If>
-                    <If Condition="[CurrentRow(&quot;ErrorCode&quot;).ToString.Length &gt; 3]" DisplayName="If Err code len &gt; 3" sap:VirtualizedContainerService.HintSize="484,362" sap2010:WorkflowViewState.IdRef="If_4">
+                    <If Condition="[CurrentRow(&quot;ErrorCode&quot;).ToString.Length &gt; 3]" DisplayName="If Err code len &gt; 3" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_4">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <If.Then>
-                        <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_5" Range="[String.Format(&quot;C{0}&quot;, dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                        <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color(err code len)" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_5" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;ErrorCode&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -156,15 +359,15 @@
                         </ui:ExcelSetRangeColor>
                       </If.Then>
                     </If>
-                    <If Condition="[Not CurrentRow(&quot;Result&quot;).ToString.Trim.ToLowerInvariant.Equals(&quot;approved&quot;) And &#xD;&#xA;Not CurrentRow(&quot;Result&quot;).ToString.Trim.ToLowerInvariant.Equals(&quot;rejected&quot;)]" DisplayName="If result not Approved/Rejected" sap:VirtualizedContainerService.HintSize="484,366" sap2010:WorkflowViewState.IdRef="If_5">
+                    <If Condition="[Not CurrentRow(&quot;Result&quot;).ToString.Trim.ToLowerInvariant.Equals(&quot;approved&quot;) And &#xA;Not CurrentRow(&quot;Result&quot;).ToString.Trim.ToLowerInvariant.Equals(&quot;rejected&quot;)]" DisplayName="If result not Approved/Rejected" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_5">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <If.Then>
-                        <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_6" Range="[String.Format(&quot;G{0}&quot;, dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
+                        <ui:ExcelSetRangeColor Color="[System.Drawing.ColorTranslator.FromHtml(&quot;#FFC7CE&quot;)]" DisplayName="Set Range Color result" sap:VirtualizedContainerService.HintSize="334,185" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_6" Range="[String.Format(&quot;{0}{1}&quot;, Convert.ToChar(65+dt_Input.Columns.IndexOf(&quot;Result&quot;)), dt_Input.Rows.IndexOf(CurrentRow) + 2)]" SheetName="Data">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -182,6 +385,6 @@
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
     </ui:ExcelApplicationScope>
-    <ui:ExcelCloseWorkbook DisplayName="Close Workbook" sap:VirtualizedContainerService.HintSize="636,59" sap2010:WorkflowViewState.IdRef="ExcelCloseWorkbook_1" Workbook="[wb]" />
+    <ui:ExcelCloseWorkbook DisplayName="Close Workbook(input file)" sap:VirtualizedContainerService.HintSize="434,59" sap2010:WorkflowViewState.IdRef="ExcelCloseWorkbook_1" Workbook="[wb]" />
   </Sequence>
 </Activity>
