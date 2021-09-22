@@ -1,0 +1,7 @@
+Goal of the Challenge:
+1. Create a quiz “bot” that will take 10 (or any number of supplied) sentences from Input File and asks to fill correct variant into the gap.
+2. Original: In Input file - first option is always correct. (Netherlands in this case)
+   My edit: In Main.xaml I've described how to prepare custom questions file (=
+3. Let the “bot” ask for 10 questions and at the end give how many points earned from total possible points.(each correctly answered question = +1point)
+
+P.S.:Don’t forget to shuffle the options so they are going every time in different order (use some Random function)
