@@ -1,0 +1,332 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.in_strSubjectFilter="Here are Excel files" this:Main.in_strUserName="dongovor" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.microsoft.com/workflow/2012/07/xaml/activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_strSubjectFilter" Type="InArgument(x:String)" />
+    <x:Property Name="in_strUserName" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>776,2815</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="35">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>Microsoft.Activities.Expressions</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="33">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>Microsoft.Activities</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="&quot;extract&quot; file(s) from mail body" sap:VirtualizedContainerService.HintSize="786,2650" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[Path.Combine(Directory.GetCurrentDirectory, &quot;downloads&quot;)]" Name="strLocalDownloadsFolder" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try Catch &quot;extract&quot; files main" sap:VirtualizedContainerService.HintSize="744,2558" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence DisplayName="&quot;extract&quot; files main" sap:VirtualizedContainerService.HintSize="706,2331" sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="mailMessages" />
+            <Variable x:TypeArguments="scg:List(x:String)" Name="listInitFiles" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If Condition="[Directory.Exists(strLocalDownloadsFolder)]" DisplayName="If local download folder exists-&gt;recreate, else create" sap:VirtualizedContainerService.HintSize="664,51" sap2010:WorkflowViewState.IdRef="If_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <TryCatch DisplayName="Try Catch recreate currentfolder\downloads" sap:VirtualizedContainerService.HintSize="438,517" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                <TryCatch.Try>
+                  <Sequence DisplayName="recreate currentfolder\downloads" sap:VirtualizedContainerService.HintSize="376,290" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete(currentfolder\downloads)" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[strLocalDownloadsFolder]" />
+                    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder(currentfolder\downloads)" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[strLocalDownloadsFolder]" />
+                  </Sequence>
+                </TryCatch.Try>
+                <TryCatch.Catches>
+                  <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ActivityAction x:TypeArguments="s:Exception">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                      </ActivityAction.Argument>
+                      <ui:LogMessage DisplayName="Log Message(reacreate downloads failed)" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[String.Format(&quot;Failed to recreate downloads folder. Exception: {0}&quot;, exception.Message)]" />
+                    </ActivityAction>
+                  </Catch>
+                </TryCatch.Catches>
+              </TryCatch>
+            </If.Then>
+            <If.Else>
+              <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder(currentfolder\downloads)(create)" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[strLocalDownloadsFolder]" />
+            </If.Else>
+          </If>
+          <ui:GetOutlookMailMessages Account="{x:Null}" FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="String.Format(&quot;@SQL=(urn:schemas:httpmail:subject LIKE '{0}')&quot;, in_strSubjectFilter)" DisplayName="Get Outlook Mail Messages using subject filter" Filter="[String.Format(&quot;@SQL=(urn:schemas:httpmail:subject LIKE '{0}')&quot;, in_strSubjectFilter)]" GetAttachements="False" sap:VirtualizedContainerService.HintSize="664,94" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="Inbox" MarkAsRead="False" Messages="[mailMessages]" OnlyUnreadMessages="True" OrderByDate="NewestFirst" Top="1000">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:GetOutlookMailMessages>
+          <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each mailMessage in mailMessages" sap:VirtualizedContainerService.HintSize="664,2014" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[mailMessages]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="snm:MailMessage">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="mailMessage" />
+                </ActivityAction.Argument>
+                <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="628,1880" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[System.Text.RegularExpressions.Regex.Matches(mailMessage.Body, &quot;(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-]).xlsx&quot;)]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="linkToXLSX" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="592,1746" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="reqResult" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign DisplayName="Assign previously downloaded files lis" sap:VirtualizedContainerService.HintSize="550,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="scg:List(x:String)">[listInitFiles]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="scg:List(x:String)">[Directory.GetFiles(String.Format("C:\Users\{0}\Downloads", Environment.UserName), "*.xlsx").ToList]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="550,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[linkToXLSX.ToString]" />
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="550,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[Path.Combine(strLocalDownloadsFolder, linkToXLSX.ToString.Split(&quot;/&quot;c).Last)]" />
+                        <ui:HttpClient Body="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" BodyFormat="application/xml" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request xlsx" EndPoint="[linkToXLSX.ToString]" sap:VirtualizedContainerService.HintSize="550,22" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" ResourcePath="[Path.Combine(strLocalDownloadsFolder, linkToXLSX.ToString.Split(&quot;/&quot;c).Last)]" Result="[reqResult]" TimeoutMS="6000">
+                          <ui:HttpClient.Attachments>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                          </ui:HttpClient.Attachments>
+                          <ui:HttpClient.Cookies>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                          </ui:HttpClient.Cookies>
+                          <ui:HttpClient.Headers>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                          </ui:HttpClient.Headers>
+                          <ui:HttpClient.Parameters>
+                            <InArgument x:TypeArguments="x:String" x:Key="X-Discourse-Username">[in_strUserName]</InArgument>
+                          </ui:HttpClient.Parameters>
+                          <ui:HttpClient.UrlSegments>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                          </ui:HttpClient.UrlSegments>
+                        </ui:HttpClient>
+                        <If Condition="[System.Text.RegularExpressions.Regex.IsMatch(reqResult, &quot;Oops! That page doesn’t exist or is private.&quot;)]" DisplayName="If(failed to download)-&gt;try with browser" sap:VirtualizedContainerService.HintSize="550,1230" sap2010:WorkflowViewState.IdRef="If_2">
+                          <If.Then>
+                            <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser with link" sap:VirtualizedContainerService.HintSize="514,1053" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="[linkToXLSX.ToString]">
+                              <ui:OpenBrowser.Body>
+                                <ActivityAction x:TypeArguments="x:Object">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="download file" sap:VirtualizedContainerService.HintSize="480,952" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                    <Sequence.Variables>
+                                      <Variable x:TypeArguments="x:String" Name="strDownloadedFile" />
+                                    </Sequence.Variables>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:Delete ContinueOnError="True" DisplayName="Delete bad file" sap:VirtualizedContainerService.HintSize="438,51" sap2010:WorkflowViewState.IdRef="Delete_2" Path="[Path.Combine(strLocalDownloadsFolder, linkToXLSX.ToString.Split(&quot;/&quot;c).Last)]">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:Delete>
+                                    <TryCatch DisplayName="Try Catch Retry Scope wait for a new file" sap:VirtualizedContainerService.HintSize="438,525" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <TryCatch.Try>
+                                        <ui:RetryScope DisplayName="Retry Scope wait for a new file" sap:VirtualizedContainerService.HintSize="351,298" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="18" RetryInterval="00:00:10">
+                                          <ui:RetryScope.ActivityBody>
+                                            <ActivityAction>
+                                              <Assign DisplayName="Assign try to pick new file" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:String">[strDownloadedFile]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:String">[String.Join("; ", Directory.GetFiles(String.Format("C:\Users\{0}\Downloads", Environment.UserName), "*.xlsx").ToList.Except(listInitFiles))]</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                            </ActivityAction>
+                                          </ui:RetryScope.ActivityBody>
+                                          <ui:RetryScope.Condition>
+                                            <ActivityFunc x:TypeArguments="x:Boolean">
+                                              <p:IsTrue DisplayName="Is true not empty strDownloadedFile" sap:VirtualizedContainerService.HintSize="309,79" sap2010:WorkflowViewState.IdRef="IsTrue_1" Input="[not String.IsNullOrEmpty(strDownloadedFile)]">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                              </p:IsTrue>
+                                            </ActivityFunc>
+                                          </ui:RetryScope.Condition>
+                                        </ui:RetryScope>
+                                      </TryCatch.Try>
+                                      <TryCatch.Catches>
+                                        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ActivityAction x:TypeArguments="s:Exception">
+                                            <ActivityAction.Argument>
+                                              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                            </ActivityAction.Argument>
+                                            <Throw DisplayName="Throw file didn't downloaded" Exception="[new System.Exception(&quot;The filtered MBA file didn't downloaded after 180 seconds.&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                                          </ActivityAction>
+                                        </Catch>
+                                      </TryCatch.Catches>
+                                    </TryCatch>
+                                    <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab(prev opened" sap:VirtualizedContainerService.HintSize="438,22" sap2010:WorkflowViewState.IdRef="CloseTab_1" />
+                                    <ui:MoveFile ContinueOnError="{x:Null}" Destination="[strLocalDownloadsFolder]" DisplayName="Move File from &lt;username&gt;\downloads -&gt; currfolder\downloads" sap:VirtualizedContainerService.HintSize="438,51" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="False" Path="[strDownloadedFile]">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:MoveFile>
+                                    <ui:LogMessage DisplayName="Log Message downloaded file" sap:VirtualizedContainerService.HintSize="438,51" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[strLocalDownloadsFolder]">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </ui:LogMessage>
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:OpenBrowser.Body>
+                            </ui:OpenBrowser>
+                          </If.Then>
+                        </If>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                </ui:ForEach>
+              </ActivityAction>
+            </ui:ForEach.Body>
+          </ui:ForEach>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="710,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <ui:LogMessage DisplayName="Log Message global exception" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Fatal" Message="[String.Format(&quot;Unexpected error occurred. Exception: {0}&quot;, exception.Message)]" />
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>
