@@ -1,0 +1,8 @@
+Challenge goal:
+
+1. Read the email
+2. From this source files: 29_EmailLinkExtraction_SourceFiles.zip either use .msg file and send it to your mailbox (and then use Get Outlook Messages or similar activity)
+(OR - in case this somehow cannot work for you - use .html file and read it as text file. In that case: Extract the hyperlinks without opening the html file (act as reading HTML of the Body of the email))
+3. search for hyperlinks in the Body of the email (use Regex or any way you will find suitable)
+4. identify only those links that lead to .xlsx file (there are few other links in that message too)
+5. download Excel file(s) from the link(s) and save in project folder.
