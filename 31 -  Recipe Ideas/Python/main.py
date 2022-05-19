@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+import os
 
 
 BASE_URL = 'https://www.bbcgoodfood.com/'
@@ -55,6 +56,8 @@ def write_recipe(input_dict, idx):
         f.write('\n')
         for step in input_dict[list(input_dict.keys())[idx - 1]][1]:
             f.write(f'{step}\n')
+    print(f'{list(input_dict.keys())[idx - 1]}.txt file was created')
+    print(f'Full path: {os.path.abspath(f"{list(input_dict.keys())[idx - 1]}.txt")}')
 
 
 def main():
@@ -66,6 +69,7 @@ def main():
         print(f'{recipe_number}. {idx}')
     user_input = int(input('Please choose recipie: '))
     write_recipe(recipies_dict, user_input)
+
 
 
 if __name__ == '__main__':
